@@ -1,0 +1,31 @@
+{
+  "name": "codeigniter-posty",
+  "version": "1.0.0",
+  "description": "Mini blog application.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naufalhilmiaji/codeigniter-posty.git"
+  },
+  "keywords": [
+    "codeigniter",
+    "ci",
+    "posty",
+    "blog"
+  ],
+  "author": "Naufal Hilmiaji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naufalhilmiaji/codeigniter-posty/issues"
+  },
+  "homepage": "https://github.com/naufalhilmiaji/codeigniter-posty#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.0"
+  }
+}

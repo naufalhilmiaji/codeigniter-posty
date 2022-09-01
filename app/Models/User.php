@@ -14,7 +14,12 @@ class User extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'first_name',
+        'last_name',
+        'email',
+        'password'
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -41,12 +46,17 @@ class User extends Model
     protected $afterDelete    = [];
 
 
-    public function getUser($email = false)
+    public function getUser($email = false, $password = false)
     {
-        if($email === false){
+        if($email === false && $password === false){
             return $this->findAll();
         }else{
-            return $this->table('users')->where('email', $email)->find()[0];
+            $result = $this->table('users')->where('email', $email)->find();
+            if (count($result) > 0) {
+                return $result[0];
+            } else {
+                return false;
+            }
         }
     }
 

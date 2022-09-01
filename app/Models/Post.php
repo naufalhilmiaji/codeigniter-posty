@@ -60,7 +60,7 @@ class Post extends Model
     {
 
         if ($term != '') {
-            return $this->table('post')->like('body', $term)->findAll();
+            return $this->table('post')->like('LOWER(body)', strtolower($term))->findAll();
         }
     }
 }
