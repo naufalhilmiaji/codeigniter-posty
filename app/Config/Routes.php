@@ -46,8 +46,11 @@ $routes->post('/delete/(:num)', 'Home::delete/$1');
 $routes->get('/welcome', 'Welcome::welcome');
 
 $routes->get('/login', 'Login::index');
+$routes->get('/register', 'Register::index');
 $routes->get('/logout', 'Login::logout');
+
 $routes->post('/login', 'Login::login');
+$routes->post('/register', 'Register::register');
 
 /*
  * --------------------------------------------------------------------

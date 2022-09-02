@@ -11,30 +11,41 @@ class Login extends BaseController
     {
         $data = [
             'title' => 'Login Page',
+            'status' => session()->get(),
         ];
 
-        return view('login', $data);
+        if (session()->get('logged_in') == 1) {
+            session()->setFlashdata('alert', 'You have already logged in.');
+
+            return redirect()->to(base_url('/'));
+        }
+
+        return view('auth/login', $data);
     }
 
     public function login()
     {
-        if (isset($_POST['submit'])) {
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
 
         $model = new User();
         $user = $model->getUser($email);
 
         if ($user) {
-            session()->set([
-                'name' => $user['first_name'],
-                'email' => $user['email'],
-                'password' => hash('md5', $user['password']),
-                'logged_in' => TRUE
-            ]);
-            
-            return redirect()->to(base_url('/'));
+            $verify_pass = password_verify($password, $user['password']);
+
+            if ($verify_pass) {
+                session()->set([
+                    'name' => $user['first_name'],
+                    'email' => $user['email'],
+                    'logged_in' => TRUE
+                ]);
+                return redirect()->to(base_url('/'));
+            } else {
+                session()->setFlashdata('error', 'Your credentials are invalid!');
+                
+                return redirect()->back();
+            }            
         } else {
             session()->setFlashdata('error', 'Your credentials are invalid!');
             
@@ -47,6 +58,6 @@ class Login extends BaseController
         session()->start();
         session()->destroy();
 
-        return redirect()->to(base_url('/login'))->with('msg', 'You have already logged out.');
+        return redirect()->to(base_url('/login'));
     }
 }
