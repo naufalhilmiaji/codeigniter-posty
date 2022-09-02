@@ -33,8 +33,8 @@ class Home extends BaseController
     {
         $model = new Post();
         $data = array(
-            'body' => $this->request->getPost('body'),
-            'author' => 'Naufal'
+            'body' => nl2br($this->request->getPost('body')),
+            'author' => session()->get('name'),
         );
         
         $model->savePost($data);
@@ -54,8 +54,9 @@ class Home extends BaseController
     {
         $model = new Post();
         $data = array(
-            'body' => $this->request->getPost('body_edit'),
-            'author' => $this->request->getPost('author_edit'),
+            'body' => nl2br($this->request->getPost('body_edit')),
+            'author' => session()->get('name'),
+            'updated_at' => date('Y-m-d H:i:s', time())
         );
         $model->updatePost($data, $id);
         return redirect()->to(base_url('/'));

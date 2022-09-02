@@ -8,6 +8,7 @@
 
     <!-- Bootstrap 5.2.0 -->
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('css/bootstrap-icons.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('css/style.css'); ?>">
 
     <title><?= esc($title) ?></title>
@@ -30,8 +31,7 @@
                                 <?php echo session()->get('name'); ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">My Posts</a></li>
                                 <li>
                                     <hr class="dropdown-divider bg-light">
                                 </li>

@@ -32,7 +32,7 @@ class Post extends Model
     public function getPost($id = false)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->orderBy('updated_at', 'DESC')->findAll();
         }else{
             return $this->getWhere(['post_id' => $id]);
         }
