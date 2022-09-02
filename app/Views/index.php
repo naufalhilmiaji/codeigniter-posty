@@ -14,7 +14,7 @@
 <div class="row g-3">
     <h3>Latest Posts</h3>
 
-    <div class="insert-field card p-3" id="insert_field">
+    <div class="insert-field card shadow p-3 mb-5 bg-body rounded p-3" id="insert_field">
         <form action="<?php echo base_url('/upload') ?>" method="POST">
             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
             <h4>New Post</h4>
@@ -28,12 +28,17 @@
     </div>
 
     <?php foreach ($posts as $post) : ?>
-        <div class="card col-12 p-3">
+        <div class="card shadow p-3 mb-5 bg-body rounded col-12 p-3">
             <div class="card-body">
                 <blockquote class="blockquote mb-0" id="blockquote_<?= $post['post_id'] ?>">
                     <p id="body_<?= $post['post_id'] ?>"><?= $post['body']; ?></p>
                     <footer class="blockquote-footer mt-2">
-                        <i><?= $post['author']; ?> at <?php echo date_format(date_create($post['created_at']),"l, d F Y"); ?></i>
+                        <i>
+                            <?php if ($post['author'] == session()->get('name')) {
+                                echo $post['author'];
+                            } else {
+                                echo 'Me';
+                            }?> at <?php echo date_format(date_create($post['created_at']),"l, d F Y"); ?></i>
                     </footer>
                 </blockquote>
             </div>
@@ -142,14 +147,14 @@
                 if (data.body) {
                     if (data.body.length == 0) {
                         const element = document.createElement('div');
-                        element.setAttribute('class', 'search-result card col-md-6 p-3');
+                        element.setAttribute('class', 'search-result card shadow p-3 mb-5 bg-body rounded col-md-6 p-3');
                         element.innerHTML = '<h5>No Post Available.</h5>'
 
                         q_res.appendChild(element);
                     } else {
                         data.body.forEach(d => {
                             const element = document.createElement('div');
-                            element.setAttribute('class', 'search-result card col-md-6 p-3');
+                            element.setAttribute('class', 'search-result card shadow p-3 mb-5 bg-body rounded col-md-6 p-3');
 
                             const q_result = `
                                 <h3>Posted by ` + d.author + `</h3>
@@ -162,7 +167,7 @@
                     }
                 } else {
                     const element = document.createElement('div');
-                    element.setAttribute('class', 'search-result card col-md-6 p-3');
+                    element.setAttribute('class', 'search-result card shadow p-3 mb-5 bg-body rounded col-md-6 p-3');
                     element.innerHTML = '<h5>Please Type the Keywords.</h5>'
 
                     q_res.appendChild(element);
