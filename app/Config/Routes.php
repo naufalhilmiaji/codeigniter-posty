@@ -39,6 +39,8 @@ $routes->get('/', 'Home::index');
 $routes->post('/upload', 'Home::upload');
 $routes->get('/search', 'Home::search');
 
+$routes->get('/profile', 'MyProfile::index');
+
 $routes->get('/edit/(:num)', 'Home::edit/$1');
 $routes->post('/update/(:num)', 'Home::update/$1');
 $routes->post('/delete/(:num)', 'Home::delete/$1');

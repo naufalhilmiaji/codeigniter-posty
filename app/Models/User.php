@@ -48,9 +48,9 @@ class User extends Model
 
     public function getUser($email = false, $password = false)
     {
-        if($email === false && $password === false){
+        if ($email === false && $password === false) {
             return $this->findAll();
-        }else{
+        } else {
             $result = $this->table('users')->where('email', $email)->find();
             if (count($result) > 0) {
                 return $result[0];
@@ -60,4 +60,15 @@ class User extends Model
         }
     }
 
+    public function getMyPosts($author = false)
+    {
+        $post = new Post();
+        $my_posts = $post->where('author', $author)->orderBy('updated_at', 'DESC')->findAll();
+
+        if ($my_posts) {
+            return $my_posts;
+        } else {
+            return false;
+        }
+    }
 }

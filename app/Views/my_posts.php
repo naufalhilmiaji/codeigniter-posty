@@ -12,21 +12,8 @@
 <?php endif; ?>
 
 <div class="row g-3">
+    <h3>Your Posts</h3>
 
-    <div class="insert-field card shadow p-3 mb-5 bg-body rounded p-3" id="insert_field">
-        <form action="<?php echo base_url('/upload') ?>" method="POST">
-            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-            <h4>New Post</h4>
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Type the content." id="new_post"
-                          name="body" style="height: 100px"></textarea>
-                <label for="new_post">Contents</label>
-                <button type="submit" class="btn btn-secondary mt-2">Send <i class="bi bi-send"></i></button>
-            </div>
-        </form>
-    </div>
-
-    <h3>Latest Posts</h3>
     <?php foreach ($posts as $post) : ?>
         <div class="card shadow p-3 mb-5 bg-body rounded col-12 p-3">
             <div class="card-body">
@@ -69,4 +56,5 @@
     </div>
     <div class="row g-2 mt-3" id="search_result"></div>
 </div>
+
 <?= $this->endSection() ?>

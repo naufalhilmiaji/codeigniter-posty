@@ -1,3 +1,6 @@
+<?php
+header('Content-Type: application/javascript');
+?>
 function editPost(id) {
     const textareaField = `
             <form action="<?php echo base_url('/update/') . '/' ?>` + id + `" id="edit_form_` + id + `" method="post">

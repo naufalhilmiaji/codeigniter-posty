@@ -26,28 +26,29 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <?php if (session()->get('logged_in') == 1) : ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo session()->get('name'); ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">My Posts</a></li>
-                            <li>
-                                <hr class="dropdown-divider bg-light">
+                            <a href="#search_field" class="nav-link">Search</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php echo session()->get('name'); ?>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="<?= base_url('/profile') ?>">My Posts</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider bg-light">
+                                    </li>
+                                    <li><a href="<?= base_url('/logout'); ?>" class="dropdown-item">Logout</a></li>
+                                </ul>
                             </li>
-                            <li><a href="<?= base_url('/logout'); ?>" class="dropdown-item">Logout</a></li>
-                        </ul>
-                    </li>
 
-                    <a href="<?= base_url('/logout'); ?>" class="nav-link">Logout</a>
-                <?php else : ?>
-                    <?php if (uri_string() == 'login') : ?>
-                        <a href="<?= base_url('/register'); ?>" class="nav-link">Register</a>
-                    <?php elseif (uri_string() == 'register') : ?>
-                        <a href="<?= base_url('/login'); ?>" class="nav-link">Login</a>
-                    <?php endif; ?>
-                <?php endif; ?>
-                </li>
+                            <a href="<?= base_url('/logout'); ?>" class="nav-link">Logout</a>
+                        <?php else : ?>
+                            <?php if (uri_string() == 'login') : ?>
+                                <a href="<?= base_url('/register'); ?>" class="nav-link">Register</a>
+                            <?php elseif (uri_string() == 'register') : ?>
+                                <a href="<?= base_url('/login'); ?>" class="nav-link">Login</a>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -148,9 +149,7 @@
 
 
     <script src="<?= base_url('js/bootstrap.bundle.min.js'); ?>"></script>
-    <script>
-        <?= $this->renderSection('extrajs') ?>
-    </script>
+    <?php echo view('extra/extra_js.php') ?>
 </body>
 
 </html>

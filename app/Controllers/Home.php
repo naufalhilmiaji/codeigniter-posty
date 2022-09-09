@@ -59,7 +59,12 @@ class Home extends BaseController
             'updated_at' => date('Y-m-d H:i:s', time())
         );
         $model->updatePost($data, $id);
-        return redirect()->to(base_url('/'));
+        
+        if (uri_string() == 'profile') {
+            return redirect()->to(base_url('/profile'));
+        } else {
+            return redirect()->to(base_url('/'));
+        }
     }
 
     public function delete($id)
