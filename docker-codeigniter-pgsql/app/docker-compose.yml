@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  codeigniter4:
+      image: bitnami/codeigniter
+      container_name: 'codeigniter'
+      environment:
+
+        - CI_ENVIRONMENT=development
+        - APP_BASE_URL=https://${PROJECT_BASE_URL}/
+        - DB_DEFAULT_HOSTNAME=${PSQL_HOSTNAME}
+        - DB_DEFAULT_DATABASE=${PSQL_DATABASE}
+        - DB_DEFAULT_USERNAME=${PSQL_USER}
+        - DB_DEFAULT_PASSWORD=${PSQL_PASSWORD}
+        - DB_DEFAULT_DRIVER=postgre
+        - DB_DEFAULT_PORT=5432
+      ports:
+        - 80:80
+      links:
+        - postgres
+      volumes:
+        - ./:/var/www/html
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  volumes:
+    db:
+      driver: local

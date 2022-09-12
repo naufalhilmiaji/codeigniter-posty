@@ -1,0 +1,16 @@
+.custom-input {
+    padding: 0 0.5rem;
+}
+
+.actions {
+    position: absolute;
+    right: 3%;
+    bottom: 20%;
+}
+
+#login_card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
