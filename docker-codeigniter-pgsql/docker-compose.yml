@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: 'posty-php'
     ports:
-      - '9000:9000'
+      - '9009:9009'
     volumes:
       - ./app:/var/www/html
     networks:
@@ -26,7 +26,7 @@ services:
         - CODEIGNITER_DATABASE_NAME=db_posty
         - CODEIGNITER_DATABASE_PASSWORD=password!
       ports:
-        - 80:80
+        - '5000:80'
       links:
         - postgres
       volumes:
